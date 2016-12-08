@@ -1,0 +1,22 @@
+{
+  "parser": "babel-eslint",
+  "extends": "airbnb-base",
+  "rules": {
+    "import/no-dynamic-require": 0,
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}],
+    "linebreak-style": 0,
+    "no-underscore-dangle": 0,
+    "no-param-reassign": ["error", { "props": false }],
+    "no-use-before-define": ["error", { "functions": false, "classes": true }],
+    "no-console": ["error", { "allow": ["log", "warn", "error"] }],
+  },
+  "globals": {
+    "_": true,
+    "angular": true,
+    "L": true,
+    "__base": true
+  },
+  "env": {
+    "browser": true
+  }
+}
