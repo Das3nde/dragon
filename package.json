@@ -4,23 +4,24 @@
   "description": "Justin's birthday website",
   "main": "index.js",
   "scripts": {
-    "babel-node": "babel-node --presets=/*a*/ --ignore='food|bar|baz'",
+    "start": "node dist/server.js",
+    "heroku-postbuild": "gulp build:server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Justin Knutson",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.14.0"
-  },
-  "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-polyfill": "^6.16.0",
     "babel-preset-latest": "^6.16.0",
+    "express": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-nodemon": "^2.2.1",
     "gulp-sequence": "^0.4.6",
     "gulp-sourcemaps": "^1.9.1"
+  },
+  "devDependencies": {
   }
 }
