@@ -1,25 +1,21 @@
 import bodyParser from 'body-parser';
-import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
 import express from 'express';
 import logger from 'morgan';
-import mongoose from 'mongoose';
 import mongoSession from 'connect-mongodb-session';
+import path from 'path';
 import session from 'express-session';
 
-if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
-  dotenv.load();
-}
-
-const MONGO_SERVER = process.env.MONGO_URI || 'mongodb://localhost/dragon';
-mongoose.connect(MONGO_SERVER);
+import './models';
 
 const MongoDBStore = mongoSession(session);
 
 const app = express();
 
 app.set('port', process.env.PORT || 8080);
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 
@@ -38,13 +34,15 @@ app.use(session({
   saveUninitialized: true,
   secret: 'LdkIe9v2',
   store: new MongoDBStore({
-    uri: MONGO_SERVER,
+    uri: process.env.MONGO_URI,
     collection: 'sessions',
   }),
 }));
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.get('/', (req, res) => {
-  res.send('Follow the Great Dragon...');
+  res.render('index');
 });
 
 export default app;
