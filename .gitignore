@@ -11,8 +11,9 @@
 *.html
 *.swp
 .env
-temp
+
 Thumbs.db
 
 dist
 node_modules
+temp

@@ -23,7 +23,6 @@ gulp.task('nodemon', () =>
   }),
 );
 
-
 gulp.task('default', gulpSequence(
   'build:server',
   'nodemon',
