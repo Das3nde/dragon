@@ -16,7 +16,7 @@ Thumbs.db
 
 test*
 _server.js
-src/templates
+src/templates/templates.module.js
 node_modules
 temp
 public
