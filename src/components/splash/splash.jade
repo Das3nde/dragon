@@ -1,1 +1,24 @@
-h1 Follow the Great Dragon...
+style(type='text/css').
+  .single-char { width: 20px; }
+.container.text-center
+  .row
+    h1 Follow the Great Dragon...
+    countdown-timer(date='June 23, 2017 12:00:00')
+  .row
+    h2 Please enter your code
+    .col-md-12.center-block
+      form(name='codeForm' novalidate)
+        input.single-char(type='text' name='_a' maxlength='1' required
+          ng-model='$ctrl.code[0]')
+        | -
+        input.single-char(type='text' name='_b' maxlength='1' required
+          ng-model='$ctrl.code[1]')
+        | -
+        input.single-char(type='text' name='_c' maxlength='1' required
+          ng-model='$ctrl.code[2]')
+        | -
+        input.single-char(type='text' name='_d' maxlength='1' required
+          ng-model='$ctrl.code[3]')
+        | -
+        input.single-char(type='text' name='_e' maxlength='1' required
+          ng-model='$ctrl.code[4]')
