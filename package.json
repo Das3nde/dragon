@@ -4,7 +4,7 @@
   "description": "Justin's birthday website",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node _server.js",
     "heroku-postbuild": "gulp build:server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -36,6 +36,7 @@
     "gulp-sequence": "^0.4.6",
     "gulp-sourcemaps": "^1.9.1",
     "jade": "^1.11.0",
+    "mailgun-js": "^0.7.15",
     "mongodb": "^2.2.15",
     "mongoose": "^4.7.2",
     "morgan": "^1.7.0",
