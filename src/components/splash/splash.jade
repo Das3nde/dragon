@@ -7,18 +7,30 @@ style(type='text/css').
   .row
     h2 Please enter your code
     .col-md-12.center-block
-      form(name='codeForm' novalidate)
+      form(name='codeForm' novalidate )
         input.single-char(type='text' name='_a' maxlength='1' required
+          ng-disabled='$ctrl.disableInput'
           ng-model='$ctrl.code[0]')
         | -
         input.single-char(type='text' name='_b' maxlength='1' required
+          ng-disabled='$ctrl.disableInput'
           ng-model='$ctrl.code[1]')
         | -
         input.single-char(type='text' name='_c' maxlength='1' required
+          ng-disabled='$ctrl.disableInput'
           ng-model='$ctrl.code[2]')
         | -
         input.single-char(type='text' name='_d' maxlength='1' required
+          ng-disabled='$ctrl.disableInput'
           ng-model='$ctrl.code[3]')
         | -
         input.single-char(type='text' name='_e' maxlength='1' required
+          ng-disabled='$ctrl.disableInput'
           ng-model='$ctrl.code[4]')
+    div(ng-if='$ctrl.result')
+      .col-md-12.center-block(ng-if='$ctrl.result')
+        h3 {{ $ctrl.result }}
+      .col-md-4.col-md-offset-4
+        label Email: &nbsp;
+        input
+        button Submit

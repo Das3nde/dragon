@@ -2,8 +2,10 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
 import express from 'express';
+import fs from 'fs';
 import logger from 'morgan';
 import mongoSession from 'connect-mongodb-session';
+import mongoose from 'mongoose';
 import path from 'path';
 import session from 'express-session';
 
@@ -43,6 +45,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
   res.render('index');
+});
+
+const User = mongoose.model('User');
+const codes = [
+  'TESTT',
+];
+
+app.post('/register', (req, res) => {
+  const code = req.body._code;
+  const email = req.body._email;
+
+  if (email) {
+    User.findOne({ code }, (user) => {
+      user.email = email;
+      user.save();
+    });
+  }
+
+  if (codes.includes(code)) {
+    return res.send(fs.readFileSync('./greeting.txt', 'utf-8'));
+  }
+
+  return res.send('Boner');
 });
 
 export default app;
