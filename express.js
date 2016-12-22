@@ -8,11 +8,11 @@ import mongoSession from 'connect-mongodb-session';
 import mongoose from 'mongoose';
 import path from 'path';
 import session from 'express-session';
-import mailgun from 'mailgun.config';
 
 import './models';
 
 
+/*
 mailgun.messages().send({
   from: 'Test User <mailgun@sandbox74f3b68ba85a4148baf17476a342f6a8.mailgun.org>',
   to: 'knutson.justin@gmail.com',
@@ -22,6 +22,7 @@ mailgun.messages().send({
   console.log(body);
   if (error) console.log(error);
 });
+*/
 
 const MongoDBStore = mongoSession(session);
 
@@ -64,8 +65,17 @@ const codes = [
   'TESTT',
 ];
 
-app.post('/register', (req, res) => {
+app.post('/code', (req, res) => {
   const code = req.body._code;
+
+  if (codes.includes(code)) {
+    return res.send(fs.readFileSync('./greeting.txt', 'utf-8'));
+  }
+
+  return res.sendStatus(404);
+});
+
+app.post('/register', (req, res) => {
   const email = req.body._email;
 
   if (email) {
@@ -75,11 +85,6 @@ app.post('/register', (req, res) => {
     });
   }
 
-  if (codes.includes(code)) {
-    return res.send(fs.readFileSync('./greeting.txt', 'utf-8'));
-  }
-
-  return res.send('Boner');
 });
 
 export default app;
