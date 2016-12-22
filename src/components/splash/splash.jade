@@ -3,7 +3,8 @@ style(type='text/css').
 .container.text-center
   .row
     h1 FOLLOW THE GREAT DRAGON
-    countdown-timer(date='June 23, 2017 12:00:00')
+
+  //- Five-digit form to submit code
   .row#codeForm
     h2 Please enter your code
     .col-md-12.center-block
@@ -27,12 +28,26 @@ style(type='text/css').
         input.single-char(type='text' name='_e' maxlength='1' required
           ng-disabled='codeForm.$valid'
           ng-model='$ctrl.code[4]')
+
+  //- Temporary message to display when code valid/invalid
   .row#validMsg(ng-show='$ctrl.codeValidMsg')
     h3 {{ $ctrl.codeValidMsg }}
+
+  //- Text to show user when code is valid
   .row#emailInput(ng-if='$ctrl.codeValid')
     .col-md-12.center-block
       p Welcome to the registration portal for the 2017 Gathering in Seoul, South Korea! Please submit your preferred contact email below to claim ownership of this code. Your email is hashed so that you remain anonymous and is used only as necessary to distribute important information and updates about the trip. Over the next few months, this website will be updated with information about the Gathering including its exact time and place and how to RSVP for all of its various related activities. This page is NOT an RSVP.
-    .col-md-4.col-md-offset-4
+    .col-md-4.col-md-offset-4#active(ng-hide='$ctrl.disableEmail')
       label Email: &nbsp;
       input(ng-model='$ctrl.email')
       button(ng-click='$ctrl.register()') Submit
+    .col-md-4.col-md-offset-4#inactive(ng-show='$ctrl.disableEmail')
+      h3 {{ $ctrl.email }}
+
+  //- Pane to show after user successfully completes registration
+  .row#confirmation(ng-if='$ctrl.completed')
+    .col-md-12.center-block
+      p Thank you for registering your code. Please look for a confirmation email in your inbox, and be sure to check back regularly for updates.
+      h3
+        small Korea 2017
+        countdown-timer(date='June 23, 2017 12:00:00')

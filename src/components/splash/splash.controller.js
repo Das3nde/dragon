@@ -9,6 +9,9 @@ export default class {
 
     this.codeValid = false;
     this.codeValidMsg = '';
+
+    this.completed = false;
+    this.disableEmail = false;
   }
 
   $postLink() {
@@ -35,13 +38,16 @@ export default class {
   }
 
   register() {
+    this.disableEmail = true;
     const _code = this.code.join('').toUpperCase();
     const _email = this.email;
 
     this.$http.post('/register', { _code, _email })
       .then((res) => {
+        this.completed = true;
       })
       .catch((error) => {
+        this.disableEmail = false;
       });
   }
 }

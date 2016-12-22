@@ -22,7 +22,11 @@ const UserSchema = mongoose.Schema({
   email: {
     type: String,
     set: (email) => cipher.encrypt(email, 'email'),
-    get: (email) => cipher.decrypt(email, 'email'),
+    get: (email) => {
+      if (email) {
+        return cipher.decrypt(email, 'email');
+      }
+    },
     select: false,
   },
   registered: {

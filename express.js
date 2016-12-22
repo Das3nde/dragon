@@ -1,4 +1,5 @@
 import bodyParser from 'body-parser';
+import chalk from 'chalk';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
 import express from 'express';
@@ -9,7 +10,6 @@ import path from 'path';
 import session from 'express-session';
 
 import './models';
-
 
 /*
 mailgun.messages().send({
@@ -76,15 +76,31 @@ app.post('/register', (req, res) => {
   const code = req.body._code;
   const email = req.body._email;
 
-  return User.findOne({ code })
-    .exec()
-    .then((user) => {
-      console.log(user);
-      return res.sendStatus(200);
-    })
-    .catch((err) => {
-      return res.sendStatus(500);
-    });
+  if (codes.includes(code)) {
+    return User.findOne({ code })
+      .exec()
+      .then((user) => {
+        if (!user) {
+          console.log(chalk.blue('User not found!'));
+          console.log(chalk.yellow('Creating new user...'));
+          return User.create({ code, email })
+        } else {
+          console.log(chalk.blue('User found!'));
+          console.log(chalk.yellow('Saving email...'));
+          user.email = email;
+          return user.save();
+        }
+      })
+      .then((user) => {
+        console.log(chalk.green('Successfully saved user:'), user._id);
+        return res.sendStatus(200);
+      })
+      .catch((err) => {
+        return res.sendStatus(500);
+      });
+  }
+
+  return res.sendStatus(404);
 });
 
 export default app;
