@@ -9,25 +9,50 @@ style(type='text/css').
     h2 Please enter your code
     .col-md-12.center-block
       form(name='codeForm' novalidate)
-        input.single-char(type='text' name='_a' maxlength='1' required
+        input.single-char.text-center(
+          type='text'
+          name='_a'
+          maxlength='1'
+          required
           ng-disabled='codeForm.$valid'
-          ng-model='$ctrl.code[0]')
+          ng-model='$ctrl.code[0]'
+        )
         | -
-        input.single-char(type='text' name='_b' maxlength='1' required
+        input.single-char.text-center(
+          type='text'
+          name='_b'
+          maxlength='1'
+          required
           ng-disabled='codeForm.$valid'
-          ng-model='$ctrl.code[1]')
+          ng-model='$ctrl.code[1]'
+        )
         | -
-        input.single-char(type='text' name='_c' maxlength='1' required
+        input.single-char.text-center(
+          type='text'
+          name='_c'
+          maxlength='1'
+          required
           ng-disabled='codeForm.$valid'
-          ng-model='$ctrl.code[2]')
+          ng-model='$ctrl.code[2]'
+        )
         | -
-        input.single-char(type='text' name='_d' maxlength='1' required
+        input.single-char.text-center(
+          type='text'
+          name='_d'
+          maxlength='1'
+          required
           ng-disabled='codeForm.$valid'
-          ng-model='$ctrl.code[3]')
+          ng-model='$ctrl.code[3]'
+        )
         | -
-        input.single-char(type='text' name='_e' maxlength='1' required
+        input.single-char.text-center(
+          type='text'
+          name='_e'
+          maxlength='1'
+          required
           ng-disabled='codeForm.$valid'
-          ng-model='$ctrl.code[4]')
+          ng-model='$ctrl.code[4]'
+        )
 
   //- Temporary message to display when code valid/invalid
   .row#validMsg(ng-show='$ctrl.codeValidMsg')
