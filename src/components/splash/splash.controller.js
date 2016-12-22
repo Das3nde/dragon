@@ -19,7 +19,7 @@ export default class {
         this.$http.post('/code', { _code })
           .then((res) => {
             this.codeValid = true;
-            this.codeValidMsg = 'Code Valid!';
+            this.codeValidMsg = 'Code Valididated';
           })
           .catch((error) => {
             this.code = new Array(5);

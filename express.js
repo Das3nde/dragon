@@ -2,7 +2,6 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
 import express from 'express';
-import fs from 'fs';
 import logger from 'morgan';
 import mongoSession from 'connect-mongodb-session';
 import mongoose from 'mongoose';
@@ -68,23 +67,24 @@ const codes = [
 app.post('/code', (req, res) => {
   const code = req.body._code;
 
-  if (codes.includes(code)) {
-    return res.send(fs.readFileSync('./greeting.txt', 'utf-8'));
-  }
+  if (codes.includes(code)) return res.sendStatus(200);
 
   return res.sendStatus(404);
 });
 
 app.post('/register', (req, res) => {
+  const code = req.body._code;
   const email = req.body._email;
 
-  if (email) {
-    User.findOne({ code }, (user) => {
-      user.email = email;
-      user.save();
+  return User.findOne({ code })
+    .exec()
+    .then((user) => {
+      console.log(user);
+      return res.sendStatus(200);
+    })
+    .catch((err) => {
+      return res.sendStatus(500);
     });
-  }
-
 });
 
 export default app;

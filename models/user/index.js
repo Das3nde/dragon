@@ -25,6 +25,11 @@ const UserSchema = mongoose.Schema({
     get: (email) => cipher.decrypt(email, 'email'),
     select: false,
   },
+  registered: {
+    type: Boolean,
+    select: false,
+    default: false,
+  },
 });
 
 UserSchema.virtual('name.full').get(() => `${this.name.first} ${this.name.last}`);
