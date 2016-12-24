@@ -55,7 +55,7 @@ style(type='text/css').
         )
 
   //- Temporary message to display when code valid/invalid
-  .row#validMsg(ng-show='$ctrl.codeValidMsg')
+  .row#codeValidMsg(ng-show='$ctrl.codeValidMsg')
     h3 {{ $ctrl.codeValidMsg }}
 
   //- Text to show user when code is valid
@@ -68,6 +68,9 @@ style(type='text/css').
       button(ng-click='$ctrl.register()') Submit
     .col-md-4.col-md-offset-4#inactive(ng-show='$ctrl.disableEmail')
       h3 {{ $ctrl.email }}
+  
+  .row#emailValidMsg(ng-show='$ctrl.emailValidMsg')
+    h3 {{ $ctrl.emailValidMsg }}
 
   //- Pane to show after user successfully completes registration
   .row#confirmation(ng-if='$ctrl.completed')

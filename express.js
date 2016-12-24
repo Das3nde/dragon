@@ -4,24 +4,14 @@ import cookieParser from 'cookie-parser';
 import cookieSession from 'cookie-session';
 import express from 'express';
 import logger from 'morgan';
+import jade from 'jade';
+import mailgun from 'mailgun.config';
 import mongoSession from 'connect-mongodb-session';
 import mongoose from 'mongoose';
 import path from 'path';
 import session from 'express-session';
 
 import './models';
-
-/*
-mailgun.messages().send({
-  from: 'Test User <mailgun@sandbox74f3b68ba85a4148baf17476a342f6a8.mailgun.org>',
-  to: 'knutson.justin@gmail.com',
-  subject: 'Hello',
-  text: 'Testing Mailgun-js',
-}, (error, body) => {
-  console.log(body);
-  if (error) console.log(error);
-});
-*/
 
 const MongoDBStore = mongoSession(session);
 
@@ -60,6 +50,7 @@ app.get('/', (req, res) => {
 });
 
 const User = mongoose.model('User');
+const TempUser = mongoose.model('TempUser');
 const codes = [
   'TESTT',
 ];
@@ -72,6 +63,14 @@ app.post('/code', (req, res) => {
   return res.sendStatus(404);
 });
 
+class BadRequestError extends Error {
+  constructor(message) {
+    super(message);
+
+    this.code = 400;
+  }
+}
+
 app.post('/register', (req, res) => {
   const code = req.body._code;
   const email = req.body._email;
@@ -80,27 +79,69 @@ app.post('/register', (req, res) => {
     return User.findOne({ code })
       .exec()
       .then((user) => {
-        if (!user) {
-          console.log(chalk.blue('User not found!'));
-          console.log(chalk.yellow('Creating new user...'));
-          return User.create({ code, email })
-        } else {
-          console.log(chalk.blue('User found!'));
-          console.log(chalk.yellow('Saving email...'));
-          user.email = email;
-          return user.save();
+        if (user) {
+          throw new BadRequestError('User already exists!');
         }
+
+        return TempUser.findOneAndRemove({ code }).exec();
       })
-      .then((user) => {
-        console.log(chalk.green('Successfully saved user:'), user._id);
+      .then(() => {
+        console.log(chalk.yellow('Creating new temp user...'));
+        return TempUser.create({ code, email });
+      })
+      .then((tempUser) => {
+        console.log(chalk.green('Successfully created temp user:'), tempUser._id);
+        const html = jade.renderFile('./views/confirmation-email.jade', {
+          confirmurl: `http://${req.get('host')}/confirm/${tempUser.id}`,
+        });
+        return mailgun.messages().send({
+          from: 'Korea 2017 Portal <do-not-reply@followthegreatdragon.com>',
+          to: email,
+          subject: 'Please Confirm Your Email Address',
+          html,
+        });
+      })
+      .then((mail) => {
+        console.log(mail);
         return res.sendStatus(200);
       })
       .catch((err) => {
-        return res.sendStatus(500);
+        const errCode = err.code || 500;
+
+        return res.status(errCode).send(err.message);
       });
   }
 
-  return res.sendStatus(404);
+  return res.status(404).send('Code invalid!');
+});
+
+app.get('/confirm/:id', (req, res) => {
+  const _id = req.params.id;
+  TempUser.findOne({ _id })
+    .exec()
+    .then((tempUser) => {
+      if (!tempUser) {
+        throw new BadRequestError('ID no longer valid');
+      }
+
+      return tempUser.remove();
+    })
+    .then((tempUser) => {
+      const email = tempUser.email;
+      const code = tempUser.code;
+
+      return User.create({ code, email });
+    })
+    .then((user) => {
+      console.log(user);
+      return res.send('Thank you! Your email has been confirmed. '
+          + 'Please check your inbox periodically for updates in 2017.');
+    })
+    .catch((err) => {
+      const errCode = err.code || 500;
+
+      return res.status(errCode).send(err.message);
+    });
 });
 
 export default app;

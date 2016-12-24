@@ -20,11 +20,11 @@ export default class {
         const _code = this.code.join('').toUpperCase();
 
         this.$http.post('/code', { _code })
-          .then((res) => {
+          .then(() => {
             this.codeValid = true;
             this.codeValidMsg = 'Code Valididated';
           })
-          .catch((error) => {
+          .catch(() => {
             this.code = new Array(5);
             this.codeValid = false;
             this.codeValidMsg = 'Code Invalid!';
@@ -43,11 +43,15 @@ export default class {
     const _email = this.email;
 
     this.$http.post('/register', { _code, _email })
-      .then((res) => {
+      .then(() => {
         this.completed = true;
       })
       .catch((error) => {
         this.disableEmail = false;
+        this.emailValidMsg = error.data;
+        this.$timeout(() => {
+          this.emailValidMsg = '';
+        }, 2000);
       });
   }
 }
