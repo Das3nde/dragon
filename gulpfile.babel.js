@@ -71,9 +71,9 @@ gulp.task('nodemon', () =>
   }),
 );
 
+gulp.task('build', gulpSequence('build:server', 'build:jade', 'build:app'));
+
 gulp.task('default', gulpSequence(
-  'build:server',
-  'build:jade',
-  'build:app',
+  'build',
   'nodemon',
 ));
