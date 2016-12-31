@@ -53,6 +53,7 @@ const User = mongoose.model('User');
 const TempUser = mongoose.model('TempUser');
 const codes = [
   'TESTT',
+  '8QP47',
   '3AN22',
   'L75BH',
   'Z4P9A',
