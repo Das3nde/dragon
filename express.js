@@ -53,6 +53,11 @@ const User = mongoose.model('User');
 const TempUser = mongoose.model('TempUser');
 const codes = [
   'TESTT',
+  '3AN22',
+  'L75BH',
+  'Z4P9A',
+  '85J22',
+  'I44N7',
 ];
 
 app.post('/code', (req, res) => {
