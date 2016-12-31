@@ -21,21 +21,12 @@ const UserSchema = mongoose.Schema({
   },
   email: {
     type: String,
-    set: (email) => cipher.encrypt(email, 'email'),
-    get: (email) => {
-      if (email) {
-        return cipher.decrypt(email, 'email');
-      }
-    },
+    set: email => cipher.encrypt(email, 'email'),
+    get: email => (email ? cipher.decrypt(email, 'email') : null),
     select: false,
-  },
-  registered: {
-    type: Boolean,
-    select: false,
-    default: false,
   },
 });
 
 UserSchema.virtual('name.full').get(() => `${this.name.first} ${this.name.last}`);
 
-export default UserSchema
+export default UserSchema;
