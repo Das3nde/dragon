@@ -59,6 +59,7 @@ const codes = [
   'Z4P9A',
   '85J22',
   'I44N7',
+  '4KP22',
 ];
 
 app.post('/code', (req, res) => {
