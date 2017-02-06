@@ -22,7 +22,7 @@ export default class {
         this.$http.post('/code', { _code })
           .then(() => {
             this.codeValid = true;
-            this.codeValidMsg = 'Code Valididated';
+            this.codeValidMsg = 'Code Validated';
           })
           .catch(() => {
             this.code = new Array(5);
