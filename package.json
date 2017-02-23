@@ -40,6 +40,8 @@
     "mongodb": "^2.2.15",
     "mongoose": "^4.7.2",
     "morgan": "^1.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "simple-cipher": "^1.0.2",
     "throng": "^4.0.0",
     "vinyl-buffer": "^1.0.0",
