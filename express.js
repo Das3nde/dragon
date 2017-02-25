@@ -13,6 +13,7 @@ import path from 'path';
 import session from 'express-session';
 
 import './models';
+import router from './routes';
 
 const MongoDBStore = mongoSession(session);
 
@@ -46,9 +47,13 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(router);
+
+/*
 app.get('/', (req, res) => {
   res.render('index');
 });
+*/
 
 // app.use(passport.initialize());
 // app.use(passport.session());
