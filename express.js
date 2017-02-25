@@ -9,6 +9,7 @@ import mailgun from 'mailgun.config';
 import mongoSession from 'connect-mongodb-session';
 import mongoose from 'mongoose';
 import path from 'path';
+// import passport from 'passport';
 import session from 'express-session';
 
 import './models';
@@ -48,6 +49,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 const User = mongoose.model('User');
 const TempUser = mongoose.model('TempUser');
