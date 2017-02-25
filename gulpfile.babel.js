@@ -31,7 +31,7 @@ gulp.task('build:app', () =>
   browserify({
     entries: './src/app.js',
     debug: true,
-    paths: './config',
+    paths: './local_modules',
   })
     .transform(babelify)
     .bundle()
@@ -63,7 +63,7 @@ gulp.task('nodemon', () =>
     // watch: /* Watch Things */,
     // ignore: /* Ignore Things */,
     execMap: {
-      js: 'NODE_PATH=config node --harmony',
+      js: 'NODE_PATH=local_modules node --harmony',
     },
     verbose: true,
     ext: 'js html json',

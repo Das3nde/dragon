@@ -1,7 +1,7 @@
 import chalk from 'chalk';
 import express from 'express';
 import jade from 'jade';
-import mailgun from 'mailgun.config';
+import mailgun from 'config/mailgun';
 import mongoose from 'mongoose';
 
 const router = express.Router();

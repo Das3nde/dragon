@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import '../config/dotenv.config';
+import 'config/dotenv';
 // import UserSchema from '../models/user';
 import TempUserSchema from '../models/temp-user';
 

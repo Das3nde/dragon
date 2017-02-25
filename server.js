@@ -1,5 +1,5 @@
 import 'babel-core/register';
-import 'dotenv.config';
+import 'config/dotenv';
 import chalk from 'chalk';
 import throng from 'throng';
 
