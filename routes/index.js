@@ -146,4 +146,8 @@ router.get('/confirm/:id', (req, res) => {
     });
 });
 
+router.get('/login', (req, res) => {
+  res.render('login');
+});
+
 export default router;
