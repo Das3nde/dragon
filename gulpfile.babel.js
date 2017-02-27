@@ -1,5 +1,4 @@
 import angularTemplatecache from 'gulp-angular-templatecache';
-import babel from 'gulp-babel';
 import babelify from 'babelify';
 import buffer from 'vinyl-buffer';
 import browserify from 'browserify';
@@ -10,13 +9,6 @@ import nodemon from 'gulp-nodemon';
 import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
 import source from 'vinyl-source-stream';
-
-gulp.task('build:server', () =>
-  gulp.src('./server.js')
-    .pipe(babel())
-    .pipe(rename('_server.js'))
-    .pipe(gulp.dest('.')),
-);
 
 gulp.task('build:libs', () =>
   gulp.src([
@@ -59,7 +51,7 @@ gulp.task('build:jade', () =>
 
 gulp.task('nodemon', () =>
   nodemon({
-    script: '_server.js',
+    script: 'server.js',
     // watch: /* Watch Things */,
     // ignore: /* Ignore Things */,
     execMap: {
@@ -71,7 +63,7 @@ gulp.task('nodemon', () =>
   }),
 );
 
-gulp.task('build', gulpSequence('build:server', 'build:jade', 'build:app'));
+gulp.task('build', gulpSequence('build:jade', 'build:app'));
 
 gulp.task('default', gulpSequence(
   'build',

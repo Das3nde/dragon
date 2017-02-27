@@ -18,4 +18,6 @@ const TempUserSchema = mongoose.Schema({
   },
 });
 
+mongoose.model('TempUser', TempUserSchema);
+
 export default TempUserSchema;

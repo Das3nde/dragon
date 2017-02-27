@@ -8,7 +8,6 @@ import path from 'path';
 import passport from 'passport';
 import session from 'express-session';
 
-import './models';
 import router from './routes';
 
 const MongoDBStore = mongoSession(session);

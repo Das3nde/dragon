@@ -1,16 +1,2 @@
-import 'babel-core/register';
-import 'config/dotenv';
-import chalk from 'chalk';
-import throng from 'throng';
-
-import app from './express';
-
-const WORKERS = process.env.WEB_CONCURRENCY || 1;
-
-const startScript = (id) => {
-  app.listen(app.get('port'), () => {
-    console.log(chalk.yellow(`Express server (${id}) listening on port ${app.get('port')}`));
-  });
-};
-
-throng(WORKERS, startScript);
+require('babel-core/register');
+module.exports = require('./server.babel.js').default;

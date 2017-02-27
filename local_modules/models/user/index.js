@@ -29,4 +29,6 @@ const UserSchema = mongoose.Schema({
 
 UserSchema.virtual('name.full').get(() => `${this.name.first} ${this.name.last}`);
 
+mongoose.model('User', UserSchema);
+
 export default UserSchema;
