@@ -1,6 +1,9 @@
 {
   "parser": "babel-eslint",
-  "extends": "airbnb-base",
+  "extends": [
+    "airbnb-base",
+    "plugin:jasmine/recommended"
+  ],
   "rules": {
     "import/no-dynamic-require": 0,
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
@@ -23,7 +26,11 @@
     "L": true,
     "__base": true
   },
+  "plugins": [
+    "jasmine"
+  ],
   "env": {
-    "browser": true
+    "browser": true,
+    "jasmine": true
   }
 }
