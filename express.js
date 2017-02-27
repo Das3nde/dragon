@@ -5,7 +5,7 @@ import express from 'express';
 import logger from 'morgan';
 import mongoSession from 'connect-mongodb-session';
 import path from 'path';
-// import passport from 'passport';
+import passport from 'passport';
 import session from 'express-session';
 
 import './models';
@@ -43,8 +43,8 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(router);
 
