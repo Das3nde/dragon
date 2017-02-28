@@ -10,6 +10,14 @@ import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
 import source from 'vinyl-source-stream';
 
+
+/**
+ * gulp build:libs
+ *
+ * Compile angular and other library files into a bundle
+ * that gets served with the application.
+ */
+
 gulp.task('build:libs', () =>
   gulp.src([
     './node_modules/angular/angular.js',
@@ -18,6 +26,14 @@ gulp.task('build:libs', () =>
     .pipe(rename('libs.js'))
     .pipe(gulp.dest('./public/js')),
 );
+
+
+/**
+ * gulp build:app
+ *
+ * Compile all files in the src directory into one
+ * application using babelify
+ */
 
 gulp.task('build:app', () =>
   browserify({
@@ -31,6 +47,14 @@ gulp.task('build:app', () =>
     .pipe(buffer())
     .pipe(gulp.dest('./public/js/')),
 );
+
+
+/**
+ * gulp build:jade
+ *
+ * Transpile jade files in the src directory into html
+ * and pipe to angular's template cache
+ */
 
 gulp.task('build:jade', () =>
   gulp.src('./src/components/**/*.jade')
@@ -49,6 +73,13 @@ gulp.task('build:jade', () =>
     .pipe(gulp.dest('./src/templates')),
 );
 
+
+/**
+ * gulp nodemon
+ *
+ * Run a nodemon server (for local development)
+ */
+
 gulp.task('nodemon', () =>
   nodemon({
     script: 'server.js',
@@ -63,7 +94,22 @@ gulp.task('nodemon', () =>
   }),
 );
 
+
+/**
+ * gulp build
+ *
+ * Compile angular templates and build the angular application.
+ * Does **NOT** build libs!
+ */
+
 gulp.task('build', gulpSequence('build:jade', 'build:app'));
+
+
+/**
+ * gulp
+ *
+ * Default task - build angular app and run the nodemon server
+ */
 
 gulp.task('default', gulpSequence(
   'build',
