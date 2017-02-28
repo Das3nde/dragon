@@ -1,3 +1,7 @@
+/**
+ * ES6-style configuration for Karma
+ */
+
 export default (config) => {
   config.set({
 
