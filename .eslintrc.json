@@ -21,10 +21,6 @@
     }
   },
   "globals": {
-    "_": true,
-    "angular": true,
-    "L": true,
-    "__base": true
   },
   "plugins": [
     "jasmine"
