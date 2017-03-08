@@ -14,8 +14,6 @@
 
 Thumbs.db
 
-test*
-_server.js
 src/templates/templates.module.js
 node_modules
 temp
