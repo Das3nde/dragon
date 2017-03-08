@@ -9,13 +9,7 @@ const router = express.Router();
 const User = mongoose.model('User');
 const TempUser = mongoose.model('TempUser');
 
-router.post('/login', passport.authenticate('local'), (req, res) => {
-  return res.sendStatus(200);
-});
-
-router.get('/', (req, res) => {
-  res.render('index');
-});
+router.post('/login', passport.authenticate('local'), (req, res) => res.sendStatus(200));
 
 const codes = [
   'TESTT',
@@ -153,6 +147,10 @@ router.get('/confirm/:id', (req, res) => {
 
 router.get('/login', (req, res) => {
   res.render('login');
+});
+
+router.use((req, res) => {
+  res.render('index');
 });
 
 export default router;
