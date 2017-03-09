@@ -1,12 +1,12 @@
 {
   "name": "dragon",
   "version": "1.0.0",
-  "description": "Justin's birthday website",
+  "description": "The Gathering website",
   "main": "index.js",
   "scripts": {
-    "start": "node _server.js",
+    "start": "node server.js",
     "heroku-postbuild": "gulp build",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start --single-run",
     "lint": "eslint ."
   },
   "author": "Justin Knutson",
@@ -14,6 +14,7 @@
   "dependencies": {
     "angular": "^1.6.0",
     "angular-route": "^1.6.0",
+    "angular-ui-router": "^1.0.0-rc.1",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.20.0",
     "babel-preset-latest": "^6.16.0",
