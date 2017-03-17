@@ -1,6 +1,7 @@
 .container.text-center
   .row#loginForm
     h2 Please Login to Your Account
+    a(ui-sref='splash') Go to splash page
     form(name='loginForm' novalidate ng-submit='$ctrl.login()')
       div
         label Email:
