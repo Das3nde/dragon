@@ -145,10 +145,6 @@ router.get('/confirm/:id', (req, res) => {
     });
 });
 
-router.get('/login', (req, res) => {
-  res.render('login');
-});
-
 router.use((req, res) => {
   res.render('index');
 });

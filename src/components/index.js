@@ -1,9 +1,12 @@
 import angular from 'angular';
-import Splash from './splash';
+
 import CountdownTimer from './countdown-timer';
+import Login from './login';
+import Splash from './splash';
 
 export default angular.module('components', [
-  Splash,
   CountdownTimer,
+  Login,
+  Splash,
 ])
 .name;
