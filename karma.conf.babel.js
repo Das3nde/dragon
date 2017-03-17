@@ -16,7 +16,10 @@ export default (config) => {
 
     // list of files / patterns to load in the browser
     files: [
-      'local_modules/**/*.spec.js',
+      'src/app.js',
+      'node_modules/angular-mocks/angular-mocks.js',
+      'src/**/*.spec.js',
+//       'local_modules/**/*.spec.js',
     ],
 
 
@@ -29,7 +32,9 @@ export default (config) => {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      '**/*.spec.js': ['browserify'],
+      'src/app.js': ['browserify'],
+      'src/**/*.spec.js': ['browserify'],
+//       '**/*.spec.js': ['browserify'],
     },
 
     browserify: {
@@ -61,7 +66,7 @@ export default (config) => {
     // config.LOG_INFO
     // config.LOG_DEBUG
 
-    logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_INFO,
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -75,7 +80,7 @@ export default (config) => {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
+    singleRun: true,
 
     // Concurrency level
     // how many browser should be started simultaneous

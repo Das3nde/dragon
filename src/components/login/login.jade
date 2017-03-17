@@ -1,14 +1,14 @@
 .container.text-center
   .row#loginForm
     h2 Please Login to Your Account
-    form(name='login' novalidate)
+    form(name='loginForm' novalidate ng-submit='$ctrl.login()')
       div
         label Email:
-        input(type='email' name='email')
+        input(type='email' name='email' ng-model='$ctrl.credentials.email')
 
       div
         label Code:
-        input(type='password' name='code')
+        input(type='password' name='password' ng-model='$ctrl.credentials.password')
 
       div
         input(type='submit' value='Log In')
