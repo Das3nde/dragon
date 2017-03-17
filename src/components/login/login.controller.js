@@ -1,6 +1,10 @@
-export default class {
-  /* eslint-disable class-methods-use-this */
+export default class LoginCtrl {
+  constructor() {
+    // Delete this after satisfied with unit tests
+    this.testVariable = 'test';
+  }
+
   login() {
-    console.log('Test');
+    console.log(this.testVariable);
   }
 }
