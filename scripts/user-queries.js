@@ -1,15 +1,16 @@
 import mongoose from 'mongoose';
 import 'config/dotenv';
-// import UserSchema from '../models/user';
-import TempUserSchema from '../models/temp-user';
+import UserSchema from 'models/user';
+// import TempUserSchema from 'models/temp-user';
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URI);
 
-// const User = mongoose.model('User', UserSchema);
-const TempUser = mongoose.model('TempUser', TempUserSchema);
+const User = mongoose.model('User', UserSchema);
+// const TempUser = mongoose.model('TempUser', TempUserSchema);
 
-TempUser
+User
+// TempUser
   .find({})
   .select('code email')
   .exec()
