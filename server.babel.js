@@ -1,6 +1,8 @@
 import chalk from 'chalk';
 import throng from 'throng';
 import 'config';
+// import 'config/mongoose';
+// import 'config/passport';
 
 import app from './express';
 

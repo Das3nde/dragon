@@ -6,7 +6,7 @@ export default (config) => {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: '..',
 
 
     // frameworks to use
@@ -19,7 +19,6 @@ export default (config) => {
       'src/app.js',
       'node_modules/angular-mocks/angular-mocks.js',
       'src/**/*.spec.js',
-//       'local_modules/**/*.spec.js',
     ],
 
 
@@ -34,7 +33,6 @@ export default (config) => {
     preprocessors: {
       'src/app.js': ['browserify'],
       'src/**/*.spec.js': ['browserify'],
-//       '**/*.spec.js': ['browserify'],
     },
 
     browserify: {

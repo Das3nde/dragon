@@ -10,23 +10,7 @@ import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
 import source from 'vinyl-source-stream';
 
-
-/**
- * gulp build:libs
- *
- * Compile angular and other library files into a bundle
- * that gets served with the application.
- */
-
-gulp.task('build:libs', () =>
-  gulp.src([
-    './node_modules/angular/angular.js',
-    './node_modules/angular-route/angular-route.js',
-  ])
-    .pipe(rename('libs.js'))
-    .pipe(gulp.dest('./public/js')),
-);
-
+const jsExecMap = 'NODE_PATH=local_modules node -r ./dotenv.js';
 
 /**
  * gulp build:app
@@ -86,7 +70,7 @@ gulp.task('nodemon', () =>
     // watch: /* Watch Things */,
     // ignore: /* Ignore Things */,
     execMap: {
-      js: 'NODE_PATH=local_modules node --harmony',
+      js: jsExecMap,
     },
     verbose: true,
     ext: 'js html json',

@@ -1,12 +1,14 @@
 {
   "name": "dragon",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "The Gathering website",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_PATH='local_modules' node -r ./dotenv.js server.js",
+    "test": "npm run test:frontend && npm run test:backend",
+    "test:frontend": "karma start karma/karma.conf.js --single-run",
+    "test:backend": "NODE_PATH='local_modules' node -r ./dotenv.js jasmine/jasmine.conf.js",
     "heroku-postbuild": "gulp build",
-    "test": "karma start --single-run",
     "lint": "eslint ."
   },
   "author": "Justin Knutson",
