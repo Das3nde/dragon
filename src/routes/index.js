@@ -10,6 +10,10 @@ export default angular.module('routes', [])
       .state('login', {
         url: '/login',
         component: 'login',
+      })
+      .state('main', {
+        url: '/main',
+        component: 'main',
       });
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
