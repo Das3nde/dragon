@@ -1,6 +1,6 @@
 {
   "name": "dragon",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "The Gathering website",
   "main": "index.js",
   "scripts": {
@@ -65,7 +65,7 @@
     "pre-commit": "^1.2.2",
     "watchify": "^3.9.0"
   },
-  "pre-commit": "lint",
+  "pre-commit": "lint-staged",
   "lint-staged": {
     "*.@(js)": "eslint"
   }
