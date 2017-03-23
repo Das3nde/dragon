@@ -9,7 +9,7 @@
     "test:frontend": "karma start karma/karma.conf.js --single-run",
     "test:backend": "NODE_PATH='local_modules' node -r ./dotenv.js jasmine/jasmine.conf.js",
     "heroku-postbuild": "gulp build",
-    "lint": "eslint ."
+    "lint": "lint"
   },
   "author": "Justin Knutson",
   "license": "ISC",
@@ -61,6 +61,11 @@
     "karma-browserify": "^5.1.1",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.2",
+    "lint-staged": "^3.4.0",
     "watchify": "^3.9.0"
+  },
+  "pre-commit": "lint",
+  "lint": {
+    "*.@(js)": "eslint"
   }
 }
