@@ -1,3 +1,5 @@
 export default class {
-  static test = 'Test';
+  static get test() {
+    return 'Test';
+  }
 }
