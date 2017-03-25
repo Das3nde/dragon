@@ -14,7 +14,7 @@ export default angular.module('routes', [])
       .state('korea', {
         abstract: true,
         url: '/korea',
-        template: '<h1>Korea Abstract</h1><ui-view></ui-view>',
+        template: '<ui-view></ui-view>',
       })
       .state('korea.main', {
         url: '/main',
