@@ -22,7 +22,7 @@ export default angular.module('routes', [])
       })
       .state('korea.account', {
         url: '/account',
-        templateUrl: 'views/test.jade',
+        component: 'account',
       })
       .state('korea.faq', {
         url: '/faq',
