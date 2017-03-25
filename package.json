@@ -16,6 +16,7 @@
   "dependencies": {
     "angular": "^1.6.0",
     "angular-route": "^1.6.0",
+    "angular-ui-bootstrap": "^2.5.0",
     "angular-ui-router": "^1.0.0-rc.1",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.20.0",
