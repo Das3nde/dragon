@@ -23,6 +23,9 @@ export default angular.module('routes', [])
       .state('korea.account', {
         url: '/account',
         component: 'account',
+        resolve: {
+          user: UserService => UserService.get(),
+        },
       })
       .state('korea.faq', {
         url: '/faq',
