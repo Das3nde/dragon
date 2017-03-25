@@ -19,6 +19,7 @@
     "angular-ui-router": "^1.0.0-rc.1",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.20.0",
+    "babel-polyfill": "^6.23.0",
     "babel-preset-latest": "^6.16.0",
     "babelify": "^7.3.0",
     "body-parser": "^1.15.2",

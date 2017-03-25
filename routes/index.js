@@ -9,6 +9,8 @@ const router = express.Router();
 const User = mongoose.model('User');
 const TempUser = mongoose.model('TempUser');
 
+router.get('/test', (req, res) => res.sendStatus(200));
+
 router.post('/login', passport.authenticate('local'), (req, res) => res.sendStatus(200));
 
 const codes = [

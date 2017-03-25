@@ -1,5 +1,7 @@
 import angular from 'angular';
 
-export default angular.module('services', [
-])
-.name;
+import UserService from './user.service';
+
+export default angular.module('services', [])
+  .service('UserService', UserService)
+  .name;

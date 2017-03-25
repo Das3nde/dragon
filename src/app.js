@@ -1,3 +1,5 @@
+import 'babel-polyfill';
+
 import angular from 'angular';
 import ngRoute from 'angular-route';
 import uiRouter from 'angular-ui-router';
