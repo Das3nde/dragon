@@ -4,6 +4,7 @@ import uiRouter from 'angular-ui-router';
 
 import components from './components';
 import routes from './routes';
+import services from './services';
 import templates from './templates';
 
 angular.module('DragonApp', [
@@ -11,5 +12,6 @@ angular.module('DragonApp', [
   uiRouter,
   components,
   routes,
+  services,
   templates,
 ]);
