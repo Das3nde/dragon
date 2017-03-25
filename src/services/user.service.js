@@ -17,4 +17,8 @@ export default class {
   get() {
     return this.user || this.$http.get('/test');
   }
+
+  getFail() {
+    return this.$http.get('/fail');
+  }
 }

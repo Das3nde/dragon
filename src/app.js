@@ -16,4 +16,13 @@ angular.module('DragonApp', [
   routes,
   services,
   templates,
-]);
+])
+.run(($transitions, $q) => {
+  $transitions.onStart({ to: 'korea.**' }, (trans) => {
+    const $state = trans.router.stateService;
+    const UserService = trans.injector().get('UserService');
+
+    return $q.when(UserService.getFail())
+      .catch(() => $state.target('login'));
+  });
+});
