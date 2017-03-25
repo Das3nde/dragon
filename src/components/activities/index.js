@@ -1,4 +1,7 @@
 import angular from 'angular';
 
+import Activities from './activities.component';
+
 export default angular.module('component.activities', [])
-.name;
+  .component('activities', Activities)
+  .name;

@@ -30,6 +30,10 @@ export default angular.module('routes', [])
       .state('korea.faq', {
         url: '/faq',
         template: '<h2>Korea FAQ</h2>',
+      })
+      .state('korea.activities', {
+        url: '/activities',
+        component: 'activities',
       });
     $locationProvider.html5Mode(true);
     $urlRouterProvider.otherwise('/');
