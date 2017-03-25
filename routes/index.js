@@ -145,6 +145,10 @@ router.get('/confirm/:id', (req, res) => {
     });
 });
 
+router.get('/views/:templateUrl', (req, res) => {
+  res.render(req.params.templateUrl);
+});
+
 router.use((req, res) => {
   res.render('index');
 });
