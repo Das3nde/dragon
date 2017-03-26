@@ -7,23 +7,27 @@ const User = mongoose.model('User');
 
 passport.use(new passportLocal.Strategy({
   usernameField: 'email',
-  passwordField: 'code',
-}, (_email, code, done) => {
+  passwordField: 'password',
+}, (_email, _password, done) => {
+  // Necessary because emails are stored as ciphered text
   const email = cipher.encrypt(_email, 'email');
-  User.findOne({ email }).select('code').exec()
+
+  User.findOne({ email }).select('password code').exec()
     .then((user) => {
       console.log(user);
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
+
+      // 1. Username must be correct
+      // 2. If no password, code must be correct
+      // 3. If password, password must be correct
+
+      if (
+        (!user) ||
+        (!user.password && user.code !== _password) ||
+        (!user.comparePassword(_password))
+      ) {
+        return done(null, false, { message: 'Incorrect username or password' });
       }
-      /*
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      */
-      if (user.code !== code) {
-        return done(null, false, { message: 'Invalid code.' });
-      }
+
       return done(null, user);
     })
     .catch(err => done(err));

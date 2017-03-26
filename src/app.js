@@ -28,7 +28,7 @@ angular.module('DragonApp', [
       .then((user) => {
         if (!user.code) {
           $uibModal.open({
-            template: '<h2>Test Modal!</h2>',
+            component: 'setPassword',
             backdrop: 'static',
           });
         }
