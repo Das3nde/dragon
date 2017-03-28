@@ -2,6 +2,7 @@ export default class {
   constructor($http) {
     Object.assign(this, { $http });
 
+    /*
     this.user = {
       firstName: 'Justin',
       lastName: 'Knutson',
@@ -11,11 +12,12 @@ export default class {
       birthday: '06/23/1989',
       inviteYear: '1989',
     };
+    */
   }
 
   /* eslint-disable class-methods-use-this */
   get() {
-    return this.user || this.$http.get('/test');
+    return this.user || this.$http.get('/user');
   }
 
   getFail() {
