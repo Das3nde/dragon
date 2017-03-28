@@ -18,6 +18,14 @@ router.get('/user', (req, res) => {
   return res.sendStatus(404);
 });
 
+router.get('/login', (req, res, next) => {
+  if (req.user) {
+    return res.redirect('/korea/main');
+  }
+
+  return next();
+});
+
 router.post('/login', passport.authenticate('local'), (req, res) => res.sendStatus(200));
 
 router.get('/logout', (req, res) => {

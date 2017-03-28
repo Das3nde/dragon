@@ -1,6 +1,15 @@
 export default class LoginCtrl {
-  constructor($http) {
-    Object.assign(this, { $http });
+  constructor($http, $state, $timeout) {
+    Object.assign(this, { $http, $state, $timeout });
+  }
+
+  showError(message) {
+    this.errorMessage = message;
+    this.showError = true;
+    this.$timeout(() => {
+      this.errorMessage = '';
+      this.showError = false;
+    }, 5000);
   }
 
   login() {
@@ -8,11 +17,15 @@ export default class LoginCtrl {
     const password = this.credentials.password;
 
     this.$http.post('/login', { email, password })
-      .then((response) => {
-        window.alert(response);
+      .then(() => {
+        this.$state.go('korea.main');
       })
       .catch((err) => {
-        window.alert(err);
+        if (err.status === 401) {
+          this.showError('Invalid Username or Password');
+        } else {
+          this.showError('An unknown error occurred, please try again later');
+        }
       });
   }
 }

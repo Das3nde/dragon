@@ -20,6 +20,15 @@ angular.module('DragonApp', [
   templates,
 ])
 .run(($transitions, $q, $uibModal) => {
+  $transitions.onBefore({ to: 'login' }, (trans) => {
+    const $state = trans.router.stateService;
+    const UserService = trans.injector().get('UserService');
+
+    if (UserService.loggedIn) {
+      $state.target('korea.main');
+    }
+  });
+
   $transitions.onStart({ to: 'korea.**' }, (trans) => {
     const $state = trans.router.stateService;
     const UserService = trans.injector().get('UserService');

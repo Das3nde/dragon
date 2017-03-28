@@ -15,9 +15,17 @@ export default class {
     */
   }
 
-  /* eslint-disable class-methods-use-this */
   get() {
-    return this.user || this.$http.get('/user');
+    return this.user || this.$http.get('/user')
+      .then((user) => {
+        console.log(user);
+        this.user = user;
+        return this.user;
+      });
+  }
+
+  get loggedIn() {
+    return !!this.user;
   }
 
   getFail() {
