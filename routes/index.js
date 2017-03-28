@@ -5,6 +5,8 @@ import mailgun from 'config/mailgun';
 import mongoose from 'mongoose';
 import passport from 'passport';
 
+import BadRequestError from 'errors/bad-request.error';
+
 const router = express.Router();
 const User = mongoose.model('User');
 const TempUser = mongoose.model('TempUser');
@@ -34,14 +36,6 @@ router.post('/code', (req, res) => {
 
   return res.sendStatus(404);
 });
-
-class BadRequestError extends Error {
-  constructor(message) {
-    super(message);
-
-    this.code = 400;
-  }
-}
 
 router.post('/register', (req, res) => {
   const code = req.body._code;
