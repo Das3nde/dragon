@@ -20,6 +20,11 @@ router.get('/user', (req, res) => {
 
 router.post('/login', passport.authenticate('local'), (req, res) => res.sendStatus(200));
 
+router.get('/logout', (req, res) => {
+  req.logout();
+  return res.sendStatus(200);
+});
+
 router.use((req, res) => {
   res.render('index');
 });
