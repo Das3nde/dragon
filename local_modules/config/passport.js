@@ -23,7 +23,7 @@ passport.use(new passportLocal.Strategy({
       if (
         (!user) ||
         (!user.password && user.code !== _password) ||
-        (!user.comparePassword(_password))
+        (user.password && !user.comparePassword(_password))
       ) {
         return done(null, false, { message: 'Incorrect username or password' });
       }
