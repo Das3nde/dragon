@@ -26,6 +26,7 @@ angular.module('DragonApp', [
 
     return $q.when(UserService.get())
       .then((user) => {
+        // TODO password, not code
         if (!user.code) {
           $uibModal.open({
             component: 'setPassword',
