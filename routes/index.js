@@ -9,56 +9,23 @@ const router = express.Router();
 const User = mongoose.model('User');
 const TempUser = mongoose.model('TempUser');
 
-router.get('/test', (req, res) => res.sendStatus(200));
+const codes = [
+  'TESTT', '8QP47', '3AN22', 'L75BH', 'Z4P9A',
+  '85J22', 'I44N7', '4KP22', '82243', '29A7P',
+  'M3A22', 'TJKC3', 'AZYVX', 'L2BA3', '9GQHT',
+  'PQBBK', 'PDHB6', 'KS6LA', 'DNI48', '8MTQW',
+  'HSBVN', '9SH4A', 'AV3AP', 'A5GRS', 'RS3UT',
+  'XKYY5', 'R9V5K', 'RN7JZ', 'HCL72', '88425',
+  'N5R6Z', 'QRNF6', 'MXKTX', 'Q9N45', 'AWLMN',
+  '6FCNS', 'PYCH4', '74G7W', 'RSJ32', 'F5W5G',
+  '9TRPX', 'PBKLA',
+];
 
+
+router.get('/test', (req, res) => res.sendStatus(200));
 router.get('/fail', (req, res) => res.sendStatus(401));
 
 router.post('/login', passport.authenticate('local'), (req, res) => res.sendStatus(200));
-
-const codes = [
-  'TESTT',
-  '8QP47',
-  '3AN22',
-  'L75BH',
-  'Z4P9A',
-  '85J22',
-  'I44N7',
-  '4KP22',
-  '82243',
-  '29A7P',
-  'M3A22',
-  'TJKC3',
-  'AZYVX',
-  'L2BA3',
-  '9GQHT',
-  'PQBBK',
-  'PDHB6',
-  'KS6LA',
-  'DNI48',
-  '8MTQW',
-  'HSBVN',
-  '9SH4A',
-  'AV3AP',
-  'A5GRS',
-  'RS3UT',
-  'XKYY5',
-  'R9V5K',
-  'RN7JZ',
-  'HCL72',
-  '88425',
-  'N5R6Z',
-  'QRNF6',
-  'MXKTX',
-  'Q9N45',
-  'AWLMN',
-  '6FCNS',
-  'PYCH4',
-  '74G7W',
-  'RSJ32',
-  'F5W5G',
-  '9TRPX',
-  'PBKLA',
-];
 
 router.post('/code', (req, res) => {
   const code = req.body._code;
@@ -147,10 +114,6 @@ router.get('/confirm/:id', (req, res) => {
 
       return res.status(errCode).send(err.message);
     });
-});
-
-router.get('/views/:templateUrl', (req, res) => {
-  res.render(req.params.templateUrl);
 });
 
 router.use((req, res) => {
