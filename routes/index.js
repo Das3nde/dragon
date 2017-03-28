@@ -33,6 +33,13 @@ router.get('/logout', (req, res) => {
   return res.sendStatus(200);
 });
 
+/*
+router.post('/set-password', (req, res) {
+  // TODO
+  // Check if user has password (not allowed to set new password)
+});
+*/
+
 router.use((req, res) => {
   res.render('index');
 });
