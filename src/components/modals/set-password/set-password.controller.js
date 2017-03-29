@@ -33,11 +33,13 @@ export default class {
   }
 
   submit() {
-    this.$http.get('/test');
-    if (this.pwNewError() || this.pwConfirmError()) {
-      console.log('Errors');
-    } else {
-      console.log('No Errors!');
-    }
+    const password = this.pwNew;
+    this.$http.post('/set-password', { password })
+      .then((user) => {
+        console.log(JSON.stringify(user));
+      })
+      .catch((err) => {
+        console.log(JSON.stringify(err));
+      });
   }
 }

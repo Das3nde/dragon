@@ -1,7 +1,11 @@
+import chalk from 'chalk';
 import express from 'express';
+import mongoose from 'mongoose';
 import passport from 'passport';
 
 import splashRoutes from './splash.routes';
+
+const User = mongoose.model('User');
 
 const router = express.Router();
 
@@ -33,12 +37,21 @@ router.get('/logout', (req, res) => {
   return res.sendStatus(200);
 });
 
-/*
-router.post('/set-password', (req, res) {
-  // TODO
-  // Check if user has password (not allowed to set new password)
+router.post('/set-password', (req, res, next) => {
+  if (req.user) {
+    const _id = req.user._id;
+    console.log(chalk.blue('Password set request from user with id:'), _id);
+    User.findOne({ _id }).select('password').exec()
+      .then((user) => {
+        if (user.password) return res.sendStatus(400);
+
+        user.password = req.body.password;
+        return user.save();
+      })
+      .then(() => res.sendStatus(200))
+      .catch(err => next(err));
+  }
 });
-*/
 
 router.use((req, res) => {
   res.render('index');

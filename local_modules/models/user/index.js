@@ -8,23 +8,19 @@ const UserSchema = new mongoose.Schema({
   name: {
     first: {
       type: String,
-      select: false,
     },
     last: {
       type: String,
-      select: false,
     },
   },
   code: {
     type: String,
     required: true,
-    select: false,
   },
   email: {
     type: String,
     set: email => cipher.encrypt(email, 'email'),
     get: email => (email ? cipher.decrypt(email, 'email') : null),
-    select: false,
   },
   password: {
     type: String,
@@ -32,18 +28,21 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-UserSchema.pre('save', (next) => {
-  const user = this;
+// Must use function syntax to get context for 'this'
 
-  if (user.isModified('password')) {
-    bcrypt.hash(user.password, SALT_WORK_FACTOR)
-      .then((hash) => {
-        user.password = hash;
-        return next();
-      })
-      .catch(err => next(err));
+UserSchema.pre('save', function preSave(next) {
+  if (this.isModified('password')) {
+    try {
+      this.password = bcrypt.hashSync(this.password, SALT_WORK_FACTOR);
+    } catch (err) {
+      return next(err);
+    }
   }
+
+  return next();
 });
+
+// Must use function syntax to get context for 'this'
 
 UserSchema.methods.comparePassword = function comparePassword(_password) {
   if (!this.password) return false;
