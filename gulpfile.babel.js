@@ -13,27 +13,6 @@ import source from 'vinyl-source-stream';
 const jsExecMap = 'NODE_PATH=local_modules node -r ./dotenv.js';
 
 /**
- * gulp build:app
- *
- * Compile all files in the src directory into one
- * application using babelify
- */
-
-gulp.task('build:app', () =>
-  browserify({
-    entries: './src/app.js',
-    debug: true,
-    paths: './local_modules',
-  })
-    .transform(babelify)
-    .bundle()
-    .pipe(source('app.js'))
-    .pipe(buffer())
-    .pipe(gulp.dest('./public/js/')),
-);
-
-
-/**
  * gulp build:jade
  *
  * Transpile jade files in the src directory into html
@@ -55,6 +34,27 @@ gulp.task('build:jade', () =>
     }))
     .pipe(rename('templates.module.js'))
     .pipe(gulp.dest('./src/templates')),
+);
+
+
+/**
+ * gulp build:app
+ *
+ * Compile all files in the src directory into one
+ * single page application using babelify
+ */
+
+gulp.task('build:app', () =>
+  browserify({
+    entries: './src/app.js',
+    debug: true,
+    paths: './local_modules',
+  })
+    .transform(babelify)
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(gulp.dest('./public/js/')),
 );
 
 
@@ -82,8 +82,7 @@ gulp.task('nodemon', () =>
 /**
  * gulp build
  *
- * Compile angular templates and build the angular application.
- * Does **NOT** build libs!
+ * Compile angular templates and then build the angular application.
  */
 
 gulp.task('build', gulpSequence('build:jade', 'build:app'));

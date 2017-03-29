@@ -8,12 +8,10 @@ const UserSchema = new mongoose.Schema({
   name: {
     first: {
       type: String,
-      required: false,
       select: false,
     },
     last: {
       type: String,
-      required: false,
       select: false,
     },
   },
