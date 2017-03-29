@@ -11,7 +11,6 @@ const User = mongoose.model('User', UserSchema);
 User
 // TempUser
   .find({})
-  .select('code email')
   .exec()
   .then((users) => {
     users.sort();

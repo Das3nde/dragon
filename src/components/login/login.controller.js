@@ -3,7 +3,7 @@ export default class LoginCtrl {
     Object.assign(this, { $http, $state, $timeout });
   }
 
-  showError(message) {
+  flashError(message) {
     this.errorMessage = message;
     this.showError = true;
     this.$timeout(() => {
@@ -22,9 +22,9 @@ export default class LoginCtrl {
       })
       .catch((err) => {
         if (err.status === 401) {
-          this.showError('Invalid Username or Password');
+          this.flashError('Invalid Username or Password');
         } else {
-          this.showError('An unknown error occurred, please try again later');
+          this.flashError('An unknown error occurred, please try again later');
         }
       });
   }

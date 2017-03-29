@@ -41,9 +41,9 @@ router.post('/set-password', (req, res, next) => {
   if (req.user) {
     const _id = req.user._id;
     console.log(chalk.blue('Password set request from user with id:'), _id);
-    User.findOne({ _id }).select('password').exec()
+    User.findOne({ _id }).exec()
       .then((user) => {
-        if (user.password) return res.sendStatus(400);
+        if (user.hasPassword) return res.sendStatus(400);
 
         user.password = req.body.password;
         return user.save();

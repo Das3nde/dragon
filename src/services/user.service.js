@@ -5,8 +5,8 @@ export default class {
 
   get() {
     return this.user || this.$http.get('/user')
-      .then((user) => {
-        this.user = user;
+      .then((res) => {
+        this.user = res.data;
         return this.user;
       });
   }
@@ -15,7 +15,11 @@ export default class {
     return !!this.user;
   }
 
-  getFail() {
-    return this.$http.get('/fail');
+  setPassword(password) {
+    return this.$http.post('/set-password', { password })
+      .then((user) => {
+        this.user = user;
+        return this.user;
+      });
   }
 }

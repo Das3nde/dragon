@@ -1,6 +1,6 @@
 export default class {
-  constructor($http) {
-    Object.assign(this, { $http });
+  constructor($http, UserService) {
+    Object.assign(this, { $http, UserService });
   }
 
   /*
@@ -33,10 +33,9 @@ export default class {
   }
 
   submit() {
-    const password = this.pwNew;
-    this.$http.post('/set-password', { password })
-      .then((user) => {
-        console.log(JSON.stringify(user));
+    this.UserService.setPassword(this.pwNew)
+      .then(() => {
+        this.modalInstance.close();
       })
       .catch((err) => {
         console.log(JSON.stringify(err));
