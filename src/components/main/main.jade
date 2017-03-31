@@ -7,9 +7,21 @@ style(type='text/css').
   .justify { text-align: justify; text-justify: inter-word; }
 
 .container
+  nav.navbar.navbar-default
+    .container-fluid
+      .navbar-header
+        a.navbar-brand(href) Korea 2017
+      ul.nav.navbar-nav
+        li.active
+          a(href) The Gathering
+        li
+          a(href) Post-Gathering Activities/Lodging
+        li
+          a(href) FAQs
+        li
+          a(href) Account Information
   .row
-    .col-md-8
-      //- .col-md-offset-2
+    .col-md-8.col-md-offset-2
       h1.text-center Lost in Seoul
 
       p.justify.indent Seoul (서울) is an old city with a long history to match. On the surface and along its major thoroughfares it looks as much like any modern metropolis, but should you take a moment to venture off the beaten path and explore its backstreets you will find an astonishing maze of winding alleyways and secluded markets leading to nowhere in particular wherefrom every vantage point reveals a microcosm of the city itself. To get ‘lost’ in Seoul is something magical, for you never know what you may find.
@@ -114,7 +126,7 @@ style(type='text/css').
           b Bring your stuff to the Gathering; 
           | you will have the opportunity to drop things off before the night continues.
 
-    .col-md-3
+    //- .col-md-3
       h2 Other Information
       .row
         a(ui-sref='^.activities') Other activities
