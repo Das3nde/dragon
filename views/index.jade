@@ -23,11 +23,10 @@ html(ng-app='DragonApp')
 
     link(
       rel='stylesheet'
-      href='/style.css'
+      href='styles.css'
     )
 
     script(src='/js/app.js' type='text/javascript')
 
   body
-    div(ui-view)
-    //- splash
+    ui-view

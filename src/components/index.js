@@ -6,6 +6,7 @@ import CountdownTimer from './countdown-timer';
 import Login from './login';
 import Main from './main';
 import Modals from './modals';
+import Navbar from './navbar';
 import Splash from './splash';
 
 export default angular.module('components', [
@@ -15,6 +16,7 @@ export default angular.module('components', [
   Login,
   Main,
   Modals,
+  Navbar,
   Splash,
 ])
 .name;

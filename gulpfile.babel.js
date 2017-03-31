@@ -95,7 +95,19 @@ gulp.task('watch:scss', () => {
  */
 
 gulp.task('watch:jade', () => {
-  gulp.watch('./src/**/*.jade', ['build:jade', 'build:app']);
+  gulp.watch('./src/**/*.jade', ['build:jade']);
+});
+
+
+/**
+ * gulp watch:js
+ *
+ * Watch for changes to js files in the src directory
+ * and trigger the build:app task if necessary
+ */
+
+gulp.task('watch:js', () => {
+  gulp.watch('./src/**/*.js', ['build:app']);
 });
 
 
@@ -142,7 +154,7 @@ gulp.task('build', gulpSequence('build:css', 'build:jade', 'build:app'));
  * Trigger all Watch tasks for development
  */
 
-gulp.task('watch', ['watch:scss', 'watch:jade']);
+gulp.task('watch', ['watch:scss', 'watch:jade', 'watch:js']);
 
 
 /**

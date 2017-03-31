@@ -14,7 +14,12 @@ export default angular.module('routes', [])
       .state('korea', {
         abstract: true,
         url: '/korea',
-        template: '<ui-view></ui-view>',
+        template: `
+          <div class='container'>
+            <navbar></navbar>
+            <ui-view></ui-view>
+          </div>
+        `,
       })
       .state('korea.main', {
         url: '/main',
