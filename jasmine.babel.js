@@ -3,9 +3,9 @@ import Jasmine from 'jasmine';
 const jasmine = new Jasmine();
 
 jasmine.loadConfig({
-  spec_dir: 'specs',
+  spec_dir: '.',
   spec_files: [
-    '**/*.spec.js',
+    'local_modules/**/*.spec.js',
   ],
   helpers: [],
   stopSpecOnExpectationFailure: false,

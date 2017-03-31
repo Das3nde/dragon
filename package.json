@@ -2,14 +2,14 @@
   "name": "dragon",
   "version": "2.1.0",
   "description": "The Gathering website",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "NODE_PATH='local_modules' node -r ./dotenv.js server.js",
     "test": "npm run test:frontend && npm run test:backend",
     "test:frontend": "karma start karma/karma.conf.js --single-run",
-    "test:backend": "NODE_PATH='local_modules' node -r ./dotenv.js jasmine/jasmine.conf.js",
+    "test:backend": "NODE_PATH='local_modules' node -r ./dotenv.js jasmine.js",
     "heroku-postbuild": "gulp build",
-    "lint-staged": "lint-staged"
+    "lint": "lint-staged"
   },
   "author": "Justin Knutson",
   "license": "ISC",
@@ -71,7 +71,7 @@
     "pre-commit": "^1.2.2",
     "watchify": "^3.9.0"
   },
-  "pre-commit": "lint-staged",
+  "pre-commit": "lint test",
   "lint-staged": {
     "*.@(js)": "eslint"
   }

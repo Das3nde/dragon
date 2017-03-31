@@ -5,4 +5,4 @@
  */
 
 require('babel-core/register');
-module.exports = require('./jasmine.conf.babel').default;
+module.exports = require('./jasmine.babel').default;
