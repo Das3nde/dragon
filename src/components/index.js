@@ -4,7 +4,7 @@ import Account from './account';
 import Activities from './activities';
 import CountdownTimer from './countdown-timer';
 import Login from './login';
-import Main from './main';
+import Gathering from './gathering';
 import Modals from './modals';
 import Navbar from './navbar';
 import Splash from './splash';
@@ -14,7 +14,7 @@ export default angular.module('components', [
   Activities,
   CountdownTimer,
   Login,
-  Main,
+  Gathering,
   Modals,
   Navbar,
   Splash,

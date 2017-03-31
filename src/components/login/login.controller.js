@@ -18,7 +18,7 @@ export default class LoginCtrl {
 
     this.$http.post('/login', { email, password })
       .then(() => {
-        this.$state.go('korea.main');
+        this.$state.go('korea.gathering');
       })
       .catch((err) => {
         if (err.status === 401) {

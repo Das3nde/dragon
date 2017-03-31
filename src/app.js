@@ -25,7 +25,7 @@ angular.module('DragonApp', [
     const UserService = trans.injector().get('UserService');
 
     if (UserService.loggedIn) {
-      $state.target('korea.main');
+      $state.target('korea.gathering');
     }
   });
 

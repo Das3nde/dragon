@@ -21,9 +21,9 @@ export default angular.module('routes', [])
           </div>
         `,
       })
-      .state('korea.main', {
-        url: '/main',
-        component: 'main',
+      .state('korea.gathering', {
+        url: '/gathering',
+        component: 'gathering',
       })
       .state('korea.account', {
         url: '/account',
