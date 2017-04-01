@@ -17,8 +17,8 @@ export default class {
 
   setPassword(password) {
     return this.$http.post('/set-password', { password })
-      .then((user) => {
-        this.user = user;
+      .then((res) => {
+        this.user = res.data;
         return this.user;
       });
   }

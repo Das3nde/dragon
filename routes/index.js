@@ -48,7 +48,7 @@ router.post('/set-password', (req, res, next) => {
         user.password = req.body.password;
         return user.save();
       })
-      .then(() => res.sendStatus(200))
+      .then(user => res.status(200).send(user))
       .catch(err => next(err));
   }
 });
