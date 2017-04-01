@@ -30,6 +30,9 @@ const UserSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  reservation: {
+    type: Object,
+  },
 });
 
 UserSchema.pre('save', function preSave(next) {

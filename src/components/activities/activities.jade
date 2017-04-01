@@ -1,5 +1,3 @@
-style.
-  .table tbody>tr>td.align-middle { vertical-align: middle; }
 .row
   .col-md-10
     h1 Post-Gathering Activities and Lodging
@@ -29,91 +27,32 @@ style.
 
 table.table
   tbody
-    tr
-      td.align-middle
+    tr(ng-repeat='day in $ctrl.itineraryDays')
+      td.align-middle(ng-switch='$ctrl.reservationStatus(day.id)')
+        p.text-center(ng-switch-when='unpaid')
+          em Payment pending...
         input.btn.btn-block.btn-primary(
           value='Add to Reservation'
           type='button'
+          ng-switch-default
+          ng-click='$ctrl.addToReservation(day.id)'
         )
-      td
-        h2 June 23 - The Gathering, Seoul
-        p Find the hidden location of The Gathering and join us in turning up to 11. Where will the night take us? Who knows?
-      td.align-middle
-        p.lead $85
-
-    tr
-      td.align-middle
         input.btn.btn-block.btn-default(
           value='Paid!'
           disabled
+          ng-switch-when='paid'
         )
-      td
-        h2 June 24 - Gangnam Style, Seoul
-        p Life south of the river is... different. Time to get schwifty Korean-style.
-      td.align-middle
-        p.lead $85
-
-    tr
-      td.align-middle
-        p.text-center
-          em Payment pending...
         input.btn.btn-block.btn-danger(
           value='Cancel'
           type='button'
+          ng-switch-when='unpaid'
+          ng-click='$ctrl.removeFromReservation(day.id)'
         )
       td
-        h2 June 25 - Recovery Day, Seoul
-        p Hangover hangover hangover hangover...
+        h2 {{day.dateString}} - {{day.title}}, {{day.location}}
+        p {{day.description}}
       td.align-middle
-        p.lead $85
-
-    tr
-      td.align-middle
-        input.btn.btn-block.btn-primary(
-          value='Reserve'
-          type='button'
-        )
-      td
-        h2 June 26 - 28 - Run-out Trip, Various Locations
-        p A train through the mountains? American BBQ in the heartland of Korea? The world's best spicy chicken and ramen? All this and more on a three-day trip out of the big city.
-      td.align-middle
-        p.lead $255
-
-    tr
-      td.align-middle
-        input.btn.btn-block.btn-primary(
-          value='Reserve'
-          type='button'
-        )
-      td
-        h2 June 29 - Back to the Big City, Seoul
-        p Refreshed and well-fed, it is time to rejoin our compatriots in Seoul
-      td.align-middle
-        p.lead $85
-
-    tr
-      td.align-middle
-        input.btn.btn-block.btn-primary(
-          value='Reserve'
-          type='button'
-        )
-      td
-        h2 June 30 - Everland, Seoul
-        p It's literally an amusement park with one of the tallest and fastest wooden rollercoasters in the world
-      td.align-middle
-        p.lead $85
-
-    tr
-      td.align-middle
-        input.btn.btn-block.btn-primary(
-          value='Reserve'
-          type='button'
-        )
-      td
-        h2 July 1 - Last Hurrah, Seoul
-        p Knock knock. Who's there? SOJUUUUUUUUUUUUUUUUU
-      td.align-middle
-        p.lead $85
+        p.lead ${{day.price}}
 
 .panel.panel-default
   .panel-body
@@ -122,4 +61,5 @@ table.table
         input.btn.btn-medium.btn-success.btn-block(
           value='Complete Reservation!'
           type='button'
+          ng-click='$ctrl.completeReservation()'
         )
