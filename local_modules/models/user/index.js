@@ -74,10 +74,6 @@ UserSchema.statics.login = function login(_email, _password) {
     });
 };
 
-UserSchema.virtual('name.full').get(function getFullName() {
-  return `${this.name.first} ${this.name.last}`;
-});
-
 mongoose.model('User', UserSchema);
 
 export default UserSchema;
