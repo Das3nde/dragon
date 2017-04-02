@@ -84,13 +84,11 @@ router.get('/confirm/:id', (req, res) => {
         throw new BadRequestError('ID no longer valid');
       }
 
-      return tempUser.remove();
-    })
-    .then((tempUser) => {
       const email = tempUser.email;
       const code = tempUser.code;
 
-      return User.create({ code, email });
+      return User.create({ code, email })
+        .then(() => tempUser.remove());
     })
     .then((user) => {
       console.log(user);
