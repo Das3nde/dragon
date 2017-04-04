@@ -1,6 +1,6 @@
 export default class {
-  constructor(ItineraryService, UserService) {
-    Object.assign(this, { ItineraryService, UserService });
+  constructor(ItineraryService, UserService, $uibModal) {
+    Object.assign(this, { ItineraryService, UserService, $uibModal });
 
     this.itineraryDays = ItineraryService.days;
     this.reservation = Object.assign({ }, UserService.user.reservation);
@@ -24,6 +24,10 @@ export default class {
       if (this.reservation[id] === 'unpaid') {
         this.reservation[id] = 'paid';
       }
+    });
+
+    this.$uibModal.open({
+      template: '<h1>Test Modal!</h1>',
     });
   }
 }
