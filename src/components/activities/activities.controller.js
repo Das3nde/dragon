@@ -27,7 +27,7 @@ export default class {
     });
 
     this.$uibModal.open({
-      template: '<h1>Test Modal!</h1>',
+      component: 'completeReservation',
     });
   }
 }
