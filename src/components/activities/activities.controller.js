@@ -19,15 +19,22 @@ export default class {
   }
 
   completeReservation() {
-    // Open modal to complete payment
-    Object.keys(this.reservation).forEach((id) => {
-      if (this.reservation[id] === 'unpaid') {
-        this.reservation[id] = 'paid';
-      }
-    });
-
     this.$uibModal.open({
       component: 'completeReservation',
+      resolve: {
+        unpaid: () => {
+          const unpaidItems = [];
+
+          Object.entries(this.reservation).forEach((entry) => {
+            const [k, stat] = entry;
+
+            console.log(k, stat);
+            if (stat === 'unpaid') unpaidItems.push(k);
+          });
+
+          return unpaidItems;
+        },
+      },
     });
   }
 }

@@ -1,6 +1,9 @@
+import controller from './complete-reservation.controller';
+
 export default {
-  template: '<h1>Test!</h1>',
+  controller,
+  template: '<h1>{{$ctrl.unpaidInvoices}}</h1>',
   bindings: {
-    unpaid: '<',
+    resolve: '<',
   },
 };
