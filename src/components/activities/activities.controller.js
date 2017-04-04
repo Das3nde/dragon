@@ -20,6 +20,10 @@ export default class {
 
   completeReservation() {
     // Open modal to complete payment
-    console.log(this.reservation);
+    Object.keys(this.reservation).forEach((id) => {
+      if (this.reservation[id] === 'unpaid') {
+        this.reservation[id] = 'paid';
+      }
+    });
   }
 }
