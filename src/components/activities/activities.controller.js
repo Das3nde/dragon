@@ -18,6 +18,11 @@ export default class {
     delete this.reservation[id];
   }
 
+  saveReservation() {
+    this.UserService.user.reservation = this.reservation;
+    // this.UserService.save();
+  }
+
   completeReservation() {
     this.$uibModal.open({
       component: 'completeReservation',
