@@ -6,7 +6,7 @@ export default class {
   }
 
   $onInit() {
-    this.resolve.unpaid.forEach((invoice) => {
+    this.resolve.pending.forEach((invoice) => {
       this.lineItems.push(this.ItineraryService.get(invoice));
     });
   }

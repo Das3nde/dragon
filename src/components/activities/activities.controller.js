@@ -11,7 +11,7 @@ export default class {
   }
 
   addToReservation(id) {
-    this.reservation[id] = 'unpaid';
+    this.reservation[id] = 'pending';
   }
 
   removeFromReservation(id) {
@@ -27,17 +27,17 @@ export default class {
     this.$uibModal.open({
       component: 'completeReservation',
       resolve: {
-        unpaid: () => {
-          const unpaidItems = [];
+        pending: () => {
+          const pendingItems = [];
 
           Object.entries(this.reservation).forEach((entry) => {
             const [k, stat] = entry;
 
             console.log(k, stat);
-            if (stat === 'unpaid') unpaidItems.push(k);
+            if (stat === 'pending') pendingItems.push(k);
           });
 
-          return unpaidItems;
+          return pendingItems;
         },
       },
     });

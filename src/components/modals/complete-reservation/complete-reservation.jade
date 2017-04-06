@@ -15,7 +15,7 @@
               td.text-center
                 strong Location
               td.text-center
-                strong Add +1
+                strong Add a +1
               td.text-right
                 strong Price
           tbody
@@ -32,5 +32,9 @@
                 strong Subtotal
               td.thick-line.text-right {{$ctrl.subtotal | currency : '$' : 0}}
       .row
+        .col-md-12
+          p.text-center
+            small Payment will be due on or before May 8. You will be contacted ahead of time to confirm your reservation. By clicking 'Submit' you are agreeing to attend The Gathering.
+      .row
         .col-md-4.col-md-offset-4
-          button.btn.btn-success.btn-block(type='button') Submit Payment
+          button.btn.btn-primary.btn-block(type='button') Submit
