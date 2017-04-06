@@ -48,11 +48,11 @@ router.post('/reserve', passport.verify, (req, res, next) => {
     .then((user) => {
       const _reservation = Object.assign({ }, user.reservation);
       req.body.reservation.forEach((item) => {
-        _reservation[item.id] = {
-          status: 'reserved',
-          guest: item.guest,
-          price: item.price,
-        };
+        const status = 'reserved';
+        const guest = item.guest || false;
+        const date = Date.now();
+
+        _reservation[item.id] = { status, guest, date };
       });
       user.reservation = _reservation;
       return user.save();
