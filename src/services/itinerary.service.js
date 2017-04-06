@@ -59,4 +59,8 @@ export default class {
       },
     ];
   }
+
+  get(id) {
+    return this.days.find(e => e.id === id);
+  }
 }
