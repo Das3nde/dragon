@@ -3,24 +3,31 @@ export default class {
     Object.assign(this, { ItineraryService, UserService, $uibModal });
 
     this.itineraryDays = ItineraryService.days;
-    this.reservation = Object.assign({ }, UserService.user.reservation);
+    this.reservation = { };
+
+    const savedReservation = UserService.user.reservation || { };
+
+    this.itineraryDays.forEach((day) => {
+      this.reservation[day.id] = { };
+    });
+
+    Object.assign(this.reservation, savedReservation);
   }
 
   reservationStatus(id) {
-    return this.reservation[id];
+    return this.reservation[id].status;
   }
 
   addToReservation(id) {
-    this.reservation[id] = 'pending';
+    this.reservation[id].status = 'pending';
   }
 
   removeFromReservation(id) {
-    delete this.reservation[id];
+    this.reservation[id].status = undefined;
   }
 
-  saveReservation() {
-    this.UserService.user.reservation = this.reservation;
-    // this.UserService.save();
+  hasPending() {
+    return Object.values(this.reservation).map(value => value.status).includes('pending');
   }
 
   completeReservation() {
@@ -31,15 +38,20 @@ export default class {
           const pendingItems = [];
 
           Object.entries(this.reservation).forEach((entry) => {
-            const [k, stat] = entry;
-
-            console.log(k, stat);
-            if (stat === 'pending') pendingItems.push(k);
+            const [k, value] = entry;
+            if (value.status === 'pending') pendingItems.push(k);
           });
 
           return pendingItems;
         },
       },
+    })
+    .result
+    .then((reservedItems) => {
+      this.UserService.reserve(reservedItems)
+        .then((user) => {
+          Object.assign(this.reservation, user.reservation);
+        });
     });
   }
 }

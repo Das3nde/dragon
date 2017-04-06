@@ -1,6 +1,6 @@
 export default class LoginCtrl {
-  constructor($http, $state, $timeout) {
-    Object.assign(this, { $http, $state, $timeout });
+  constructor(UserService, $state, $timeout) {
+    Object.assign(this, { UserService, $state, $timeout });
   }
 
   flashError(message) {
@@ -16,7 +16,7 @@ export default class LoginCtrl {
     const email = this.credentials.email;
     const password = this.credentials.password;
 
-    this.$http.post('/login', { email, password })
+    this.UserService.login(email, password)
       .then(() => {
         this.$state.go('korea.gathering');
       })

@@ -39,12 +39,11 @@ UserSchema.pre('save', function preSave(next) {
   if (this.isModified('password')) {
     try {
       this.password = bcrypt.hashSync(this.password, SALT_WORK_FACTOR);
+      this.hasPassword = true;
     } catch (err) {
       return next(err);
     }
   }
-
-  this.hasPassword = !!this.password;
 
   return next();
 });

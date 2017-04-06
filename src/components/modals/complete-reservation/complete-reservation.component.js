@@ -5,5 +5,6 @@ export default {
   templateUrl: 'views/complete-reservation.html',
   bindings: {
     resolve: '<',
+    modalInstance: '<',
   },
 };

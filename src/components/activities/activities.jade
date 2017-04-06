@@ -64,4 +64,5 @@ table.table
           value='Complete Reservation!'
           type='button'
           ng-click='$ctrl.completeReservation()'
+          ng-disabled='!$ctrl.hasPending()'
         )

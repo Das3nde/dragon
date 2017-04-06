@@ -35,6 +35,7 @@ angular.module('DragonApp', [
 
     return $q.when(UserService.get())
       .then((user) => {
+        console.log(user);
         if (!user.hasPassword) {
           $uibModal.open({
             component: 'setPassword',

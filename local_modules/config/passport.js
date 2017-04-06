@@ -24,3 +24,11 @@ passport.deserializeUser((id, done) => {
   User.findById(id).exec()
     .then(user => done(null, user));
 });
+
+passport.verify = (req, res, next) => {
+  if (req.user) {
+    return next();
+  }
+
+  return res.sendStatus(401);
+};

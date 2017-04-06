@@ -11,6 +11,10 @@ export default class {
     });
   }
 
+  submit() {
+    this.modalInstance.close(this.lineItems);
+  }
+
   get subtotal() {
     let subtotal = 0;
     this.lineItems.forEach((item) => {
