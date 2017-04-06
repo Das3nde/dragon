@@ -34,7 +34,7 @@ export default angular.module('routes', [])
       })
       .state('korea.faq', {
         url: '/faq',
-        template: '<h2>Korea FAQ</h2>',
+        template: '<h2>Under Construction - FAQ forthcoming</h2>',
       })
       .state('korea.activities', {
         url: '/activities',
