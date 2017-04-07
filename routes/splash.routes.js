@@ -92,8 +92,7 @@ router.get('/confirm/:id', (req, res) => {
     })
     .then((user) => {
       console.log(user);
-      return res.send('Thank you! Your email has been confirmed. '
-          + 'Please check your inbox periodically for updates in 2017.');
+      return res.redirect('/login');
     })
     .catch((err) => {
       const errCode = err.code || 500;
