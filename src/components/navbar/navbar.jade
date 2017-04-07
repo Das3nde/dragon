@@ -17,3 +17,7 @@ nav.navbar.navbar-default
     //- li(ui-sref-active='active')
       a(ui-sref='.account')
         | Account Information
+
+    li
+      a(href ng-click='$ctrl.logout()')
+        | Logout

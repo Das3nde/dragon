@@ -25,8 +25,10 @@ router.get('/login', (req, res, next) => {
 
 router.get('/test', passport.verify, (req, res) => res.sendStatus(200));
 
-router.post('/login', passport.authenticate('local'), (req, res) =>
-    res.status(200).send(req.user));
+router.post('/login', passport.authenticate('local'), (req, res) => {
+  console.log('New login from:', chalk.green(req.user.code));
+  return res.status(200).send(req.user);
+});
 
 router.post('/set-password', passport.verify, (req, res, next) => {
   const _id = req.user._id;

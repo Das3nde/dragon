@@ -20,7 +20,7 @@ User.find({}).exec()
         from: 'Korea 2017 Portal <do-not-reply@followthegreatdragon.com>',
         to: user.email,
         bcc: 'knutson.justin@gmail.com',
-        subject: 'Korea 2017 - New Information',
+        subject: 'Korea 2017 - The Gathering Update',
         html,
       })
       .then((mail) => {
