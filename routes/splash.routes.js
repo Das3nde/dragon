@@ -18,7 +18,7 @@ const codes = [
   'XKYY5', 'R9V5K', 'RN7JZ', 'HCL72', '88425',
   'N5R6Z', 'QRNF6', 'MXKTX', 'Q9N45', 'AWLMN',
   '6FCNS', 'PYCH4', '74G7W', 'RSJ32', 'F5W5G',
-  '9TRPX', 'PBKLA',
+  '9TRPX', 'PBKLA', 'TEMP1',
 ];
 
 const router = express.Router();
