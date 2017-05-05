@@ -34,7 +34,7 @@ export default angular.module('routes', [])
       })
       .state('korea.faq', {
         url: '/faq',
-        template: '<h2>Under Construction - FAQ forthcoming</h2><p>For questions, comments, and concerns, please contact Justin Knutson (knutson.justin@gmail.com)</p>',
+        component: 'faq',
       })
       .state('korea.activities', {
         url: '/activities',
