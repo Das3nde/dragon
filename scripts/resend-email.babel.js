@@ -9,10 +9,26 @@ mongoose.Promise = global.Promise;
 
 const User = mongoose.model('User', UserSchema);
 
-User.find({}).exec()
+/* test code
+const html = jade.renderFile('./views/reminder-email.jade', {
+  code: 'TESTT',
+});
+
+mailgun.messages().send({
+  from: 'Korea 2017 Portal <do-not-reply@followthegreatdragon.com>',
+  to: 'knutson.justin@gmail.com',
+  subject: 'Korea 2017 - Post-Gathering RSVP Closing Soon',
+  html,
+})
+.then((mail) => {
+  console.log(mail);
+});
+*/
+
+User.find({ reservation: { $exists: false } }).exec()
   .then((users) => {
     users.forEach((user) => {
-      const html = jade.renderFile('./views/invite-email.jade', {
+      const html = jade.renderFile('./views/reminder-email.jade', {
         code: user.code,
       });
 
@@ -20,7 +36,7 @@ User.find({}).exec()
         from: 'Korea 2017 Portal <do-not-reply@followthegreatdragon.com>',
         to: user.email,
         bcc: 'knutson.justin@gmail.com',
-        subject: 'Korea 2017 - The Gathering Update',
+        subject: 'Korea 2017 - Post-Gathering RSVP Closing Soon',
         html,
       })
       .then((mail) => {

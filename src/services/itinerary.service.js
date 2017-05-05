@@ -7,7 +7,7 @@ export default class {
         title: 'The Gathering',
         location: 'Seoul',
         description: 'Find the hidden location of The Gathering and join us in turning up to 11. Where will the night take us? Who knows?',
-        price: '85',
+        price: '100',
       },
       {
         id: 'id2',
@@ -15,7 +15,7 @@ export default class {
         title: 'Gangnam Style',
         location: 'Seoul',
         description: 'Life south of the river is... different. Time to get schwifty Korean-style.',
-        price: '85',
+        price: '100',
       },
       {
         id: 'id3',
@@ -23,7 +23,7 @@ export default class {
         title: 'Recovery Day',
         location: 'Seoul',
         description: 'Hangover hangover hangover hangover...',
-        price: '85',
+        price: '100',
       },
       {
         id: 'id4',
@@ -31,7 +31,7 @@ export default class {
         title: 'Run-out Trip',
         location: 'Various Locations',
         description: 'A train through the mountains? American BBQ in the heartland of Korea? The world\'s best spicy chicken and ramen? All this and more on a three-day trip out of the big city.',
-        price: '255',
+        price: '300',
       },
       {
         id: 'id5',
@@ -39,7 +39,7 @@ export default class {
         title: 'Back to the Big City',
         location: 'Seoul',
         description: 'Refreshed and well-fed, it is time to rejoin our compatriots in Seoul',
-        price: '85',
+        price: '100',
       },
       {
         id: 'id6',
@@ -47,7 +47,7 @@ export default class {
         title: 'Everland',
         location: 'Seoul',
         description: 'It\'s literally an amusement park with one of the tallest and fastest wooden rollercoasters in the world',
-        price: '85',
+        price: '100',
       },
       {
         id: 'id7',
@@ -55,7 +55,7 @@ export default class {
         title: 'Last Hurrah',
         location: 'Seoul',
         description: 'Knock knock. Who\'s there? SOJUUUUUUUUUUUUUUUUU',
-        price: '85',
+        price: '100',
       },
     ];
   }
