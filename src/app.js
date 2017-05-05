@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import angular from 'angular';
 import ngRoute from 'angular-route';
 import uiModal from 'angular-ui-bootstrap/src/modal/index-nocss';
-import uiRouter from 'angular-ui-router';
+import uiRouter from '@uirouter/angularjs';
 
 import components from './components';
 import routes from './routes';
