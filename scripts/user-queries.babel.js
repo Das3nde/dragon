@@ -10,7 +10,7 @@ const User = mongoose.model('User', UserSchema);
 
 User
 // TempUser
-  .find({ reservation: { $exists: false } })
+  .find({ reservation: { $exists: true } })
   .exec()
   .then((users) => {
     users.sort();
